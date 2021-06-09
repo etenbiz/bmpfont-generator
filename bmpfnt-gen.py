@@ -53,15 +53,16 @@ def main():
     font_file = "fonts/HZK12" if not args.font_file else args.font_file
     m = re.match('^.*HZK([\d]+)[FHKS]?$', font_file)
     if not m or not os.access(font_file, os.R_OK):
-        print("Invalid font file.")
+        print("Unable to read font file: {}".format(font_file))
         sys.exit(2)
     else:
         font_bits = int(m.group(1))
 
     # init the default values
     input_file = "input.txt" if not args.input else args.input
-    output_bin = "dist/hzk{}.fnt".format(font_bits) if not args.output else args.output
-    output_txt = "dist/hzk{}.txt".format(font_bits) if not args.output else args.output + ".txt"
+    output_dir = "dist"
+    output_bin = "{}/hzk{}.fnt".format(output_dir, font_bits) if not args.output else args.output
+    output_txt = "{}/hzk{}.txt".format(output_dir, font_bits) if not args.output else args.output + ".txt"
 
     # read inputs from file
     with open(input_file, "r") as fin:
@@ -78,6 +79,10 @@ def main():
     if font_bits in [24, 40, 48]:
         with open(font_file[:-1] + "T", "rb") as ffnt:
             bmpsym = ffnt.read()
+
+    # create the distributable directory if does not exist
+    if not os.path.isdir(output_dir):
+        os.mkdir(output_dir, mode=0o755)
 
     # generate the bitmap font file which is just contains the input characters.
     with open(output_txt, "w") as fout_txt:
