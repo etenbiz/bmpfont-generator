@@ -87,15 +87,17 @@ def main():
     # generate the bitmap font file which is just contains the input characters.
     with open(output_txt, "w") as fout_txt:
         fout_txt.write("       ０ １ ２ ３ ４ ５ ６ ７ ８ ９ Ａ Ｂ Ｃ Ｄ Ｅ Ｆ\n")
+        pos = 0x80
         with open(output_bin, "wb") as fout_bin:
             for i in range(0, len(chars_gb2312)//2):
                 fout_bin.write(get_bmp_font(bmpfnt, bmpsym, chars_gb2312[i*2:i*2+2], font_height=font_bits))
-                if i % 16 == 0:
-                    fout_txt.write("0x%04x " % i)
+                if pos % 16 == 0:
+                    fout_txt.write("0x%04x " % pos)
                 fout_txt.write(chars_utf8[i])
                 fout_txt.write(" ")
-                if (i + 1) % 16 == 0:
+                if (pos + 1) % 16 == 0:
                     fout_txt.write("\n")
+                pos += 1
         fout_txt.write("\n")
     
     # print the result of characters map and output file
