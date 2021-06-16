@@ -4,7 +4,6 @@
 #   Date   : JUN 16, 2021
 #
 
-from struct import pack, unpack
 import argparse
 
 def main():
@@ -24,6 +23,7 @@ def main():
         chars_utf8 = ''. join(sorted(set(chars_raw), key=chars_raw.index))
         chars_gb2312 = chars_utf8.encode("gb2312")
     
+    # calculate the positions in stripped font file.
     in_chars = args.in_str[0].encode("gb2312")
     pos = 0xA0A0
     res = bytearray()
@@ -37,7 +37,7 @@ def main():
             res.extend(bytes([in_chars[i]]))
         i += 1
     print(bytes(res))
-    
+
 
 if __name__ == "__main__":
     main()
