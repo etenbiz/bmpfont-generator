@@ -1,3 +1,9 @@
+# To generate stripped bitmap font/dot-matrix file with font map
+#
+#   Author : Janvier Peng
+#   Date   : JUN 16, 2021
+#
+
 import numpy as np
 import os
 import re
@@ -87,7 +93,7 @@ def main():
     # generate the bitmap font file which is just contains the input characters.
     with open(output_txt, "w") as fout_txt:
         fout_txt.write("       ０ １ ２ ３ ４ ５ ６ ７ ８ ９ Ａ Ｂ Ｃ Ｄ Ｅ Ｆ\n")
-        pos = 0x80
+        pos = 0xA0A0
         with open(output_bin, "wb") as fout_bin:
             for i in range(0, len(chars_gb2312)//2):
                 fout_bin.write(get_bmp_font(bmpfnt, bmpsym, chars_gb2312[i*2:i*2+2], font_height=font_bits))
