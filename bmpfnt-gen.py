@@ -51,7 +51,7 @@ def main():
     # parsing arguments
     parser = argparse.ArgumentParser(description='To generate bitmap font file for specific simplified Chinese characters. (GB2312 only)')
     parser.add_argument('-f', '--font-file', required=False, help="the font file. default: fonts/HZK12")
-    parser.add_argument('-i', '--input', required=False, help="the input file which contains all the needed characters. default: input.txt")
+    parser.add_argument('-i', '--input', required=True, help="the input file which contains all the needed characters.")
     parser.add_argument('-o', '--output', required=False, help="the output file of bitmap font. default: hzk12.fnt")
     args = parser.parse_args()
 
