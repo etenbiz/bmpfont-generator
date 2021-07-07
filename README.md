@@ -11,14 +11,14 @@
 使用方式：
 
 ```
-$ python3 bmpfnt-gen.py [-h] [-f FONT_FILE] [-i INPUT] [-o OUTPUT]
+$ python3 bmpfnt-gen.py [-h] [-f FONT_FILE] -i INPUT [-o OUTPUT]
 
 参数:
   -h, --help            显示帮助
   -f FONT_FILE, --font-file FONT_FILE
                         点阵字体文件。默认值：fonts/HZK12
   -i INPUT, --input INPUT
-                        包含所需文字的输入文件。默认值：input.txt
+                        包含所需文字的输入文件。
   -o OUTPUT, --output OUTPUT
                         输出的点阵文件。默认值: hzk12.fnt
 ```
@@ -35,13 +35,14 @@ $ python3 bmpfnt-gen.py [-h] [-f FONT_FILE] [-i INPUT] [-o OUTPUT]
 使用方式：
 
 ```
-$ python3 hz2bytes.py [-h] [-i INPUT] string
+$ python3 hz2bytes.py [-h] [-i INPUT] (-m MESSAGE | -n)
 
-固定参数:
-  string                需要被转换的字符串
-
-optional arguments:
+可选参数:
   -h, --help            显示帮助
   -i INPUT, --input INPUT
                         包含所需文字的输入文件（和上面的产生器相同的输入文件）。默认值：input.txt
+  -m MESSAGE, --message MESSAGE
+                        包含中英文的被转换字符串
+  -n, --interactive     进入互动模式。(输入 q 表示退出)
+
 ```
